@@ -1,5 +1,6 @@
 package com.example.social_network.model;
 
+import com.example.social_network.model.enums.ERole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,6 +10,7 @@ import org.w3c.dom.ls.LSInput;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -28,9 +30,10 @@ public class User {
     @Column(updatable = false)
     private LocalDateTime createDate;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns =
+                     @JoinColumn(name = "user_id"))
+    private Set<ERole> roles;
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
@@ -41,8 +44,8 @@ public class User {
     @OneToOne(mappedBy = "user")
     private Contacts contacts;
 
-    @OneToMany( mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
-    private List<Friend> friends;
+//    @OneToMany( mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
+//    private List<Friend> friends;
 
     public User(String username, String password) {
         this.username = username;

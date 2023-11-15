@@ -22,4 +22,10 @@ public class Contacts {
     @Column(nullable = false)
     private String email;
     private String phone;
+
+    public Contacts(String firstname, String lastname, String email) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
 }

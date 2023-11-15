@@ -3,6 +3,8 @@ package com.example.social_network.model;
 import com.example.social_network.model.enums.ERole;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.w3c.dom.ls.LSInput;
@@ -15,6 +17,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
+@Builder
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

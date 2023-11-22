@@ -1,4 +1,4 @@
-package com.example.social_network.service;
+package com.example.social_network.service.model;
 
 import com.example.social_network.dto.PostDTO;
 import com.example.social_network.exception.PostNotFoundException;

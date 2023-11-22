@@ -1,6 +1,6 @@
 package com.example.social_network.security;
 
-import com.example.social_network.service.JWTService;
+import com.example.social_network.service.security.JWTService;
 import com.example.social_network.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

@@ -1,4 +1,4 @@
-package com.example.social_network.service;
+package com.example.social_network.service.security;
 
 import com.example.social_network.dto.request.AuthRequest;
 import com.example.social_network.dto.request.RegisterRequest;

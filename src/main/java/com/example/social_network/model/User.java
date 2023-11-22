@@ -2,6 +2,7 @@ package com.example.social_network.model;
 
 import com.example.social_network.model.enums.ERole;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,8 +36,7 @@ public class User {
     private LocalDateTime createDate;
 
     @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns =
-                     @JoinColumn(name = "user_id"))
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     private Set<ERole> roles;
 
     @OneToMany(mappedBy = "user")
@@ -45,15 +45,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne
+    @JoinColumn(name = "contacts_id", referencedColumnName = "id")
     private Contacts contacts;
 
-//    @OneToMany( mappedBy="owner", cascade=CascadeType.ALL, orphanRemoval = true)
-//    private List<Friend> friends;
-
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        createDate = LocalDateTime.now();
-    }
+    private List<Integer> followers;
 }

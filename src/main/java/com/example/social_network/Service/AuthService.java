@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -42,6 +43,7 @@ public class AuthService {
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .roles(Collections.singleton(ERole.USER))
+                .createDate(LocalDateTime.now())
                 .build();
 
         userRepository.save(user);
@@ -52,7 +54,7 @@ public class AuthService {
         return new AuthResponse(jwt);
     }
 
-    public AuthResponse authenticate(AuthRequest request) throws UsernameNotFoundException {
+    public AuthResponse authenticate(AuthRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),

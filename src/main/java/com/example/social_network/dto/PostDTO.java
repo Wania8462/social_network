@@ -7,5 +7,4 @@ import lombok.Data;
 public class PostDTO {
     private String text;
     private String location;
-//    private User user;
 }

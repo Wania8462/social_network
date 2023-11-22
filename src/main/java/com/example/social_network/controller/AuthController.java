@@ -1,6 +1,6 @@
 package com.example.social_network.controller;
 
-import com.example.social_network.Service.AuthService;
+import com.example.social_network.service.AuthService;
 import com.example.social_network.dto.request.AuthRequest;
 import com.example.social_network.dto.request.RegisterRequest;
 import com.example.social_network.dto.response.AuthResponse;

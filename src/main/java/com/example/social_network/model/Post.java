@@ -8,7 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Builder
 @Data
@@ -25,9 +27,17 @@ public class Post {
 
     private Integer reactions;
 
+    @Column
+    @ElementCollection(targetClass = String.class)
+    private Set<String> likeUsers = new HashSet<>();
+
+    @Column
+    @ElementCollection(targetClass = String.class)
+    private Set<String> dislikeUsers = new HashSet<>();
+
     @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
     @Column(updatable = false)
-    private LocalDateTime created_date;
+    private LocalDateTime createdDate;
 
     private String location;
 

@@ -1,4 +1,4 @@
-package com.example.social_network.Service;
+package com.example.social_network.service;
 
 import com.example.social_network.dto.request.AuthRequest;
 import com.example.social_network.dto.request.RegisterRequest;
@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.Collections;
 
 @RequiredArgsConstructor

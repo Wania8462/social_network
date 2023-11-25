@@ -49,6 +49,14 @@ public class PostService {
         );
     }
 
+    public Post getById(Long id, Principal principal) {
+        User user = userService.getUserByPrincipal(principal);
+
+        return postRepository.findByIdAndUser(id, user).orElseThrow(
+                () -> new PostNotFoundException("Post not found by id: " + id.toString())
+        );
+    }
+
     public Post like(Long id, Principal principal) {
         Post post = getById(id);
         User user = userService.getUserByPrincipal(principal);
@@ -62,7 +70,7 @@ public class PostService {
         else
             post.getLikeUsers().remove(user.getUsername());
 
-        return postRepository.save(post); // Update?
+        return postRepository.save(post);
     }
 
     public Post dislike(Long id, Principal principal) {
@@ -78,6 +86,11 @@ public class PostService {
         else
             post.getDislikeUsers().remove(user.getUsername());
 
-        return postRepository.save(post); // Update?
+        return postRepository.save(post);
+    }
+
+    public void delete(Long id, Principal principal) {
+        Post post = getById(id, principal);
+        postRepository.delete(post);
     }
 }

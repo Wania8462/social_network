@@ -2,7 +2,6 @@ package com.example.social_network.security;
 
 import com.example.social_network.model.User;
 import com.example.social_network.model.enums.ERole;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

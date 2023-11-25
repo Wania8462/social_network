@@ -34,13 +34,13 @@ public class JWTService {
 
     public String generateToken(Map<String, Object> extractedClaims, UserDetails userDetails) {
         return Jwts
-                        .builder()
-                        .setClaims(extractedClaims)
-                        .setSubject(userDetails.getUsername())
-                        .setIssuedAt(new Date(System.currentTimeMillis()))
-                        .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
-                        .signWith(getSingInKey(), SignatureAlgorithm.HS256)
-                        .compact();
+                .builder()
+                .setClaims(extractedClaims)
+                .setSubject(userDetails.getUsername())
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
+                .signWith(getSingInKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {

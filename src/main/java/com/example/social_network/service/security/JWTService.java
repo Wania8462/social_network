@@ -20,7 +20,7 @@ public class JWTService {
     private static final String SALT = "14b208612e573cface7536af1cf3bc6ac01f7b6e2a000ce3a538d00a02db6047";
 
     public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject); // Claims::getSubject == get username
+        return extractClaim(token, Claims::getSubject);
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
@@ -61,7 +61,7 @@ public class JWTService {
                 .parserBuilder()
                 .setSigningKey(getSingInKey())
                 .build()
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
 

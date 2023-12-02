@@ -41,7 +41,7 @@ public class AuthService {
                 )
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .roles(Collections.singleton(ERole.USER))
+                .roles(Collections.singletonList(ERole.USER))
                 .createDate(LocalDateTime.now())
                 .build();
 

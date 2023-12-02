@@ -13,6 +13,6 @@ public class UserDTO {
     private Long id;
     private String username;
     private LocalDateTime createDate;
-    private Set<ERole> roles;
-    private List<Post> posts;
+    private List<ERole> roles;
+    private List<Long> postsId;
 }

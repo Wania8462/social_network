@@ -37,7 +37,7 @@ public class User {
 
     @ElementCollection(targetClass = ERole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    private Set<ERole> roles;
+    private List<ERole> roles;
 
     @OneToMany(mappedBy = "user")
     private List<Post> posts;

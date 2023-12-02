@@ -8,8 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -30,11 +29,11 @@ public class Comment {
 
     @Column
     @ElementCollection(targetClass = String.class)
-    private Set<String> likeUsers = new HashSet<>();
+    private List<String> likeUsers = new ArrayList<>();
 
     @Column
     @ElementCollection(targetClass = String.class)
-    private Set<String> dislikeUsers = new HashSet<>();
+    private List<String> dislikeUsers = new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")

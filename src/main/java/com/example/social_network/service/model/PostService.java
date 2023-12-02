@@ -1,6 +1,7 @@
 package com.example.social_network.service.model;
 
 import com.example.social_network.dto.PostDTO;
+import com.example.social_network.dto.request.PostRequest;
 import com.example.social_network.exception.PostNotFoundException;
 import com.example.social_network.model.Post;
 import com.example.social_network.model.User;
@@ -20,14 +21,13 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public Post create(PostDTO postDTO, Principal principal) {
+    public Post create(PostRequest postRequest, Principal principal) {
         User user = userService.getUserByPrincipal(principal);
 
         Post post = Post.builder()
                 .user(user)
-                .text(postDTO.getText())
-                .location(postDTO.getLocation())
-                .reactions(0)
+                .text(postRequest.getText())
+                .location(postRequest.getLocation())
                 .createdDate(LocalDateTime.now())
                 .build();
 

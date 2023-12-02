@@ -25,8 +25,6 @@ public class Post {
     @Column(columnDefinition = "text")
     private String text;
 
-    private Integer reactions;
-
     @Column
     @ElementCollection(targetClass = String.class)
     private Set<String> likeUsers = new HashSet<>();

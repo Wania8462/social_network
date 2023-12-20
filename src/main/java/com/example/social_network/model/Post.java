@@ -26,6 +26,15 @@ public class Post {
     @Column(columnDefinition = "text")
     private String text;
 
+    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
+    @Column(updatable = false)
+    private LocalDateTime createdDate;
+
+    private String location;
+
+    private Integer likeAmount;
+    private Integer dislikeAmount;
+
     @Column
     @ElementCollection(targetClass = String.class)
     private List<String> likeUsers = new ArrayList<>();
@@ -33,12 +42,6 @@ public class Post {
     @Column
     @ElementCollection(targetClass = String.class)
     private List<String> dislikeUsers = new ArrayList<>();
-
-    @JsonFormat(pattern = "yyyy-mm-dd HH:mm:ss")
-    @Column(updatable = false)
-    private LocalDateTime createdDate;
-
-    private String location;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

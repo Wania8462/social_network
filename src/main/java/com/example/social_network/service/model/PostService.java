@@ -1,6 +1,5 @@
 package com.example.social_network.service.model;
 
-import com.example.social_network.dto.PostDTO;
 import com.example.social_network.dto.request.PostRequest;
 import com.example.social_network.exception.PostNotFoundException;
 import com.example.social_network.model.Post;
@@ -17,8 +16,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class PostService {
-    private final UserService userService;
 
+    private final UserService userService;
     private final PostRepository postRepository;
 
     public Post create(PostRequest postRequest, Principal principal) {
@@ -45,7 +44,7 @@ public class PostService {
 
     public Post getById(Long id) {
         return postRepository.findById(id).orElseThrow(
-                () -> new PostNotFoundException("Post not found by id: " + id.toString())
+                () -> new PostNotFoundException("Post not found by id: " + id)
         );
     }
 
@@ -53,7 +52,7 @@ public class PostService {
         User user = userService.getUserByPrincipal(principal);
 
         return postRepository.findByIdAndUser(id, user).orElseThrow(
-                () -> new PostNotFoundException("Post not found by id: " + id.toString())
+                () -> new PostNotFoundException("Post not found by id: " + id)
         );
     }
 

@@ -1,9 +1,13 @@
-package com.example.social_network.service.model;
+package com.example.social_network.service.Impl;
 
 import com.example.social_network.exception.PostNotFoundException;
 import com.example.social_network.model.Media;
 import com.example.social_network.model.Post;
+import com.example.social_network.model.User;
 import com.example.social_network.repository.MediaRepository;
+import com.example.social_network.service.MediaService;
+import com.example.social_network.service.PostService;
+import com.example.social_network.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,12 +21,20 @@ import java.util.zip.Inflater;
 
 @RequiredArgsConstructor
 @Service
-public class MediaService {
+public class MediaServiceImpl implements MediaService {
     private MediaRepository mediaRepository;
     private PostService postService;
     private UserService userService;
 
-    public Media uploadImagePost(MultipartFile file, Long postId, Principal principal) throws IOException {
+    @Override
+    public Media uploadMediaToUser(MultipartFile file, Principal principal) throws IOException {
+        User user = userService.getUserByPrincipal(principal);
+
+        Media UserProfilemedia =
+    }
+
+    @Override
+    public Media uploadMediaToPost(MultipartFile file, Long postId, Principal principal) throws IOException {
         Post post = postService.getAllForUser(principal)
                 .stream()
                 .filter(p -> p.getId().equals(postId))
@@ -38,6 +50,12 @@ public class MediaService {
         return mediaRepository.save(media);
     }
 
+    @Override
+    public Media getMediaUser(Principal principal) {
+        return null;
+    }
+
+    @Override
     public Media getMediaPost(Long postId) {
         Media media = mediaRepository.findByPostId(postId).orElseThrow(
                 () -> new RuntimeException("Make custom"));

@@ -1,7 +1,8 @@
-package com.example.social_network.service.model;
+package com.example.social_network.service.Impl;
 
 import com.example.social_network.model.User;
 import com.example.social_network.repository.UserRepository;
+import com.example.social_network.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.security.Principal;
 
 @RequiredArgsConstructor
 @Service
-public class UserService {
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     public User getUserByPrincipal(Principal principal) {

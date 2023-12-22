@@ -3,7 +3,7 @@ package com.example.social_network.controller;
 import com.example.social_network.dto.PostDTO;
 import com.example.social_network.dto.request.PostRequest;
 import com.example.social_network.model.Post;
-import com.example.social_network.service.model.PostService;
+import com.example.social_network.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -59,7 +59,7 @@ public class PostController {
     public ResponseEntity<PostDTO> like(@PathVariable Long id, Principal principal) {
         Post post = postService.like(id, principal);
         return new ResponseEntity<>(
-                map(postService.getById(id)),
+                map(post),
                 HttpStatus.OK
         );
     }

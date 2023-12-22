@@ -1,7 +1,6 @@
-package com.example.social_network.service.model;
+package com.example.social_network.service;
 
 import com.example.social_network.dto.CommentDTO;
-import com.example.social_network.exception.CommentNotFoundException;
 import com.example.social_network.exception.CommentNotFoundException;
 import com.example.social_network.model.Comment;
 import com.example.social_network.model.Post;

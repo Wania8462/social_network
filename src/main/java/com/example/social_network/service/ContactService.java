@@ -1,4 +1,4 @@
-package com.example.social_network.service.model;
+package com.example.social_network.service;
 
 import com.example.social_network.dto.ContactsDTO;
 import com.example.social_network.model.Contacts;

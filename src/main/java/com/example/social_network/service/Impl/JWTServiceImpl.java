@@ -1,10 +1,12 @@
-package com.example.social_network.service.security;
+package com.example.social_network.service.Impl;
 
+import com.example.social_network.service.JWTService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +17,10 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JWTService {
+public class JWTServiceImpl implements JWTService {
 
-    private static final String SALT = "14b208612e573cface7536af1cf3bc6ac01f7b6e2a000ce3a538d00a02db6047";
+    @Value("${salt}")
+    private static String SALT;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

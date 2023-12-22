@@ -1,4 +1,4 @@
-package com.example.social_network.service.security;
+package com.example.social_network.service.Impl;
 
 import com.example.social_network.dto.request.AuthRequest;
 import com.example.social_network.dto.request.RegisterRequest;
@@ -8,6 +8,8 @@ import com.example.social_network.model.User;
 import com.example.social_network.model.enums.ERole;
 import com.example.social_network.repository.ContactsRepository;
 import com.example.social_network.repository.UserRepository;
+import com.example.social_network.service.AuthService;
+import com.example.social_network.service.JWTService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +23,7 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
-public class AuthService {
+public class AuthServiceImpl implements AuthService {
 
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;

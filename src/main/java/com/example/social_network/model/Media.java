@@ -26,4 +26,8 @@ public class Media {
     @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }

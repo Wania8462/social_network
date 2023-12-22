@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/social_network
+    username: root
+    password: 564955
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+
+salt: 14b208612e573cface7536af1cf3bc6ac01f7b6e2a000ce3a538d00a02db6047

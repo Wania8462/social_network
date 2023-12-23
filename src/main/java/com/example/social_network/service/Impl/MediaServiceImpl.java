@@ -1,5 +1,6 @@
 package com.example.social_network.service.Impl;
 
+import com.example.social_network.exception.MediaNotFoundException;
 import com.example.social_network.exception.PostNotFoundException;
 import com.example.social_network.model.Media;
 import com.example.social_network.model.Post;
@@ -27,10 +28,16 @@ public class MediaServiceImpl implements MediaService {
     private UserService userService;
 
     @Override
-    public Media uploadMediaToUser(MultipartFile file, Principal principal) throws IOException {
-        User user = userService.getUserByPrincipal(principal);
+    public Media uploadMediaToUser(MultipartFile file, Long userId) throws IOException {
+        User user = userService.getUserById(userId);
 
-        Media UserProfilemedia =
+        Media userProfileMedia = Media.builder()
+                .user(user)
+                .name(file.getName())
+                .bytes(compressBytes(file.getBytes()))
+                .build();
+
+        return mediaRepository.save(userProfileMedia);
     }
 
     @Override
@@ -51,14 +58,21 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public Media getMediaUser(Principal principal) {
-        return null;
+    public Media getMediaUser(Long userId) {
+        Media media = mediaRepository.findByUserId(userId).orElseThrow(
+                () -> new MediaNotFoundException("Media not found by post id: " + userId));
+
+        if(media != null) {
+            media.setBytes(decompressBytes(media.getBytes()));
+        }
+
+        return media;
     }
 
     @Override
     public Media getMediaPost(Long postId) {
         Media media = mediaRepository.findByPostId(postId).orElseThrow(
-                () -> new RuntimeException("Make custom"));
+                () -> new MediaNotFoundException("Media not found by post id: " + postId));
 
         if(media != null) {
             media.setBytes(decompressBytes(media.getBytes()));

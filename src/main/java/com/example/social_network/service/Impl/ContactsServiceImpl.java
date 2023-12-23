@@ -1,9 +1,11 @@
-package com.example.social_network.service;
+package com.example.social_network.service.Impl;
 
 import com.example.social_network.dto.ContactsDTO;
 import com.example.social_network.model.Contacts;
 import com.example.social_network.model.User;
 import com.example.social_network.repository.ContactsRepository;
+import com.example.social_network.service.ContactsService;
+import com.example.social_network.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,7 @@ import java.security.Principal;
 
 @RequiredArgsConstructor
 @Service
-public class ContactService {
+public class ContactsServiceImpl implements ContactsService {
     private final ContactsRepository contactsRepository;
     private final UserService userService;
 

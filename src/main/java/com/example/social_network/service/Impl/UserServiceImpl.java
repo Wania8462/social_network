@@ -21,4 +21,11 @@ public class UserServiceImpl implements UserService {
                 () -> new UsernameNotFoundException("User not found by username: " + username)
         );
     }
+
+    @Override
+    public User getUserById(Long id) {
+        return userRepository.findById(id).orElseThrow(
+                () -> new UsernameNotFoundException("User not found by id: " + id)
+        );
+    }
 }

@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.security.Principal;
 
 public interface MediaService {
-    Media uploadMediaToUser(MultipartFile file, Principal principal) throws IOException; // TODO: change principal to id
+    Media uploadMediaToUser(MultipartFile file, Long userId) throws IOException;
     Media uploadMediaToPost(MultipartFile file, Long postId, Principal principal) throws IOException;
-    Media getMediaUser(Principal principal); // TODO: change principal to id
+    Media getMediaUser(Long userId); // TODO: change principal to id
     Media getMediaPost(Long postId);
 }

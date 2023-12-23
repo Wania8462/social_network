@@ -6,4 +6,5 @@ import java.security.Principal;
 
 public interface UserService {
     User getUserByPrincipal(Principal principal);
+    User getUserById(Long id);
 }

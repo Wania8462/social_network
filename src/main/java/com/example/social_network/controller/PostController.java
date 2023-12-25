@@ -64,6 +64,15 @@ public class PostController {
         );
     }
 
+    @PatchMapping("/{id}/dislike")
+    public ResponseEntity<PostDTO> dislike(@PathVariable Long id, Principal principal) {
+        Post post = postService.dislike(id, principal);
+        return new ResponseEntity<>(
+                map(post),
+                HttpStatus.OK
+        );
+    }
+
     @PostMapping
     public ResponseEntity<PostDTO> create(@RequestBody PostRequest request, Principal principal) {
         Post post = postService.create(request, principal);

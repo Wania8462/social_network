@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
@@ -23,13 +24,16 @@ import java.util.zip.Inflater;
 @RequiredArgsConstructor
 @Service
 public class MediaServiceImpl implements MediaService {
-    private MediaRepository mediaRepository;
-    private PostService postService;
-    private UserService userService;
+    private final MediaRepository mediaRepository;
+    private final PostService postService;
+    private final UserService userService;
 
     @Override
     public Media uploadMediaToUser(MultipartFile file, Long userId) throws IOException {
         User user = userService.getUserById(userId);
+
+        mediaRepository.findByUserId(userId)
+                .ifPresent(mediaRepository::delete);
 
         Media userProfileMedia = Media.builder()
                 .user(user)
@@ -70,12 +74,12 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public Media getMediaPost(Long postId) {
-        Media media = mediaRepository.findByPostId(postId).orElseThrow(
-                () -> new MediaNotFoundException("Media not found by post id: " + postId));
+    public List<Media> getMediaPost(Long postId) {
+        List<Media> media = mediaRepository.findByPostId(postId);
 
         if(media != null) {
-            media.setBytes(decompressBytes(media.getBytes()));
+            media.forEach(m -> m.setBytes(
+                            decompressBytes(m.getBytes())));
         }
 
         return media;

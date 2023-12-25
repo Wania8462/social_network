@@ -20,7 +20,7 @@ import java.util.function.Function;
 public class JWTServiceImpl implements JWTService {
 
     @Value("${salt}")
-    private static String SALT;
+    private String SALT;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

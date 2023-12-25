@@ -1,6 +1,6 @@
 package com.example.social_network.exception.handler;
 
-import com.example.social_network.exception.PostNotFoundException;
+import com.example.social_network.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +17,31 @@ public class GlobalExceptionHandler {
                                                WebRequest request) {
         return mapError(ex, request, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(CommentNotFoundException.class)
+    private ResponseEntity<ErrorObject> handle(CommentNotFoundException ex,
+                                               WebRequest request) {
+        return mapError(ex, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ContactsNotFoundException.class)
+    private ResponseEntity<ErrorObject> handle(ContactsNotFoundException ex,
+                                               WebRequest request) {
+        return mapError(ex, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(MediaNotFoundException.class)
+    private ResponseEntity<ErrorObject> handle(MediaNotFoundException ex,
+                                               WebRequest request) {
+        return mapError(ex, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    private ResponseEntity<ErrorObject> handle(UserNotFoundException ex,
+                                               WebRequest request) {
+        return mapError(ex, request, HttpStatus.NOT_FOUND);
+    }
+
 
     private ResponseEntity<ErrorObject> mapError(RuntimeException ex,
                                                  WebRequest request,

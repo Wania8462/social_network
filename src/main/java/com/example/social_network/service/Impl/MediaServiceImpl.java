@@ -46,8 +46,8 @@ public class MediaServiceImpl implements MediaService {
 
     @Override
     public Media uploadMediaToPost(MultipartFile file, Long postId, Principal principal) throws IOException {
-        Post post = postService.getAllForUser(principal)
-                .stream()
+        List<Post> posts = postService.getAllForUser(principal);
+        Post post = posts.stream()
                 .filter(p -> p.getId().equals(postId))
                 .findAny().orElseThrow(
                         () -> new PostNotFoundException("Post not found by id: " + postId));

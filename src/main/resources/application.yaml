@@ -6,7 +6,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     show-sql: true
 
 salt: 14b208612e573cface7536af1cf3bc6ac01f7b6e2a000ce3a538d00a02db6047
